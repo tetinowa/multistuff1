@@ -6,8 +6,8 @@ import {
   FieldGroup,
   FieldLabel,
   FieldSet,
-} from "@/components/ui/field";
-import { Input } from "@/components/ui/input";
+} from "src/components/ui/field";
+import { Input } from "src/components/ui/input";
 import {
   Card,
   CardAction,
@@ -16,8 +16,8 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+} from "src/components/ui/card";
+import { Button } from "src/components/ui/button";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -27,10 +27,9 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
   NavigationMenuViewport,
-} from "@/components/ui/navigation-menu";
+} from "src/components/ui/navigation-menu";
 import dynamicIconImports from "lucide-react/dynamicIconImports";
 import { Moon, Search } from "lucide-react";
-import { Unstyled } from "@/components/ui/unstyled";
 
 export default function Home() {
   return (
