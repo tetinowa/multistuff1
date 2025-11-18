@@ -85,30 +85,35 @@ export default function Home() {
     //     </Card>
     //   </div>
     // </div>
-    <div className="bg-white w-dvw h-[59px] border-b pl-4 pr-4 flex justify-between">
-      <div className="w-7xl flex justify-between items-center">
-        <img src="/src/movie/ico/film.svg" className="w-5 h-5"></img>
-        <h1 className="font-sans font-bold text-[16px] leading-5 tracking-[2%] text-center text-[#4338CA] italic">
-          Movie Z
-        </h1>
-        <NavigationMenu className="bg-white w-[97px] h-9 rounded-md border pt-2 pr-4 pb-2 pl-4 flex gap-2">
-          <NavigationMenuList>
-            <NavigationMenuItem>
-              <NavigationMenuTrigger>Genre</NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <NavigationMenuLink>Link</NavigationMenuLink>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-          </NavigationMenuList>
-        </NavigationMenu>
-        <div className="flex items-center w-[379px] rounded-lg border pl-3 pr-3 gap-2.5 bg-white">
-          <Search></Search>
-          {/* <Unstyled as={Input} type="text" placeholder="Psda" /> */}
-          <Input
-            className="border-0 outline-0 shadow-none"
-            placeholder="Search..."
-          ></Input>
+    <div className="bg-white w-dvw h-[59px] border-b pl-4 pr-4 flex">
+      <div className="w-7xl flex justify-center items-center">
+        <div className="flex gap-2">
+          <img src="/src/movie/ico/film.svg" className="w-5 h-5"></img>
+          <h1 className="font-sans font-bold text-[16px] leading-5 tracking-[2%] text-center text-[#4338CA] italic">
+            Movie Z
+          </h1>
         </div>
+        <div className="flex gap-3">
+          <NavigationMenu className="bg-white w-[97px] h-9 rounded-md border pt-2 pr-4 pb-2 pl-4 flex gap-2">
+            <NavigationMenuList>
+              <NavigationMenuItem>
+                <NavigationMenuTrigger>Genre</NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <NavigationMenuLink>Link</NavigationMenuLink>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+            </NavigationMenuList>
+          </NavigationMenu>
+          <div className="flex items-center w-[379px] rounded-lg border pl-3 pr-3 gap-2.5 bg-white">
+            <Search></Search>
+            {/* <Unstyled as={Input} type="text" placeholder="Psda" /> */}
+            <Input
+              className="border-0 outline-0 shadow-none"
+              placeholder="Search..."
+            ></Input>
+          </div>
+        </div>
+
         <Moon></Moon>
       </div>
     </div>
