@@ -6,8 +6,8 @@ import {
   FieldGroup,
   FieldLabel,
   FieldSet,
-} from "src/components/ui/field";
-import { Input } from "src/components/ui/input";
+} from "@/src/components/ui/field";
+import { Input } from "@/src/components/ui/input";
 import {
   Card,
   CardAction,
@@ -16,8 +16,8 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "src/components/ui/card";
-import { Button } from "src/components/ui/button";
+} from "@/src/components/ui/card";
+import { Button } from "@/src/components/ui/button";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -27,9 +27,16 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
   NavigationMenuViewport,
-} from "src/components/ui/navigation-menu";
+} from "@/src/components/ui/navigation-menu";
 import dynamicIconImports from "lucide-react/dynamicIconImports";
 import { Moon, Search } from "lucide-react";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/src/components/ui/carousel";
 
 export default function Home() {
   return (
@@ -84,6 +91,7 @@ export default function Home() {
     //     </Card>
     //   </div>
     // </div>
+    <div>
     <div className="bg-white w-dvw h-[59px] border-b pl-4 pr-4 flex">
       <div className="w-7xl flex justify-center items-center">
         <div className="flex gap-2">
@@ -112,9 +120,20 @@ export default function Home() {
             ></Input>
           </div>
         </div>
-
         <Moon></Moon>
       </div>
+    </div>
+    <div>
+   <Carousel>
+    <CarouselContent>
+       <CarouselItem>...</CarouselItem>
+        <CarouselItem>...</CarouselItem>
+         <CarouselItem>...</CarouselItem>
+    </CarouselContent>
+     <CarouselPrevious></CarouselPrevious>
+     <CarouselNext></CarouselNext>
+   </Carousel>
+    </div>
     </div>
   );
 }
