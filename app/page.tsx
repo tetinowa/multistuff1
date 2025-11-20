@@ -37,8 +37,34 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/src/components/ui/carousel";
+import { NumberLiteralType } from "typescript";
+
+export type Movie = {
+  adult: boolean;
+  backdrop_patch: string;
+  genre_ids: number[];
+  id: number;
+  original_language: string;
+  original_title: string;
+  overview: string;
+  popularity: number;
+  poster_patch: string;
+  release_date: string;
+  title: string;
+  video: boolean;
+  vote_average: number;
+  vote_count: number;
+}
+
+type Response = { page: number;
+  result: Movie[];
+ total_pages: number;
+ total_results: number;
+}
 
 export default function Home() {
+const [movies, setMovies] = useState<Movie[]>([]);
+
   return (
     // <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
     //   <div className="w-full max-w-md">
@@ -126,9 +152,11 @@ export default function Home() {
     <div>
    <Carousel>
     <CarouselContent>
-       <CarouselItem>...</CarouselItem>
-        <CarouselItem>...</CarouselItem>
-         <CarouselItem>...</CarouselItem>
+       <CarouselItem>
+
+
+       </CarouselItem>
+       
     </CarouselContent>
      <CarouselPrevious></CarouselPrevious>
      <CarouselNext></CarouselNext>
