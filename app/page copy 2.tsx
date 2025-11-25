@@ -25,7 +25,7 @@ import {
   CarouselPrevious,
 } from "@/src/components/ui/carousel";
 
-import { MovieCard } from "./_component/MovieCard";
+
 
 export type Movie = {
   adult: boolean;
@@ -89,9 +89,30 @@ export default function Home() {
     loadMovies();
   }, []);
 
+  const MovieCard = ({ movie }: { movie: Movie }) => (
+    <Card className="w-full border-0 shadow-none bg-transparent overflow-hidden group cursor-pointer">
+      <CardContent className="p-0">
+        <div className="relative aspect-[2/3] rounded-lg overflow-hidden">
+          <img
+            src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+            alt={movie.title}
+            className="w-full h-full object-cover transition-transform group-hover:scale-105"
+          />
+        </div>
+        <div className="mt-2 space-y-1">
+          <div className="flex items-center gap-1">
+            <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
+            <span className="text-sm text-gray-600">{movie.vote_average.toFixed(1)}</span>
+          </div>
+          <h3 className="text-sm font-medium line-clamp-1">{movie.title}</h3>
+        </div>
+      </CardContent>
+    </Card>
+  );
+
   return (
     <div className="min-h-screen bg-white">
-      
+      {/* NAVBAR */}
       <div className="bg-white h-[59px] border-b px-4 flex justify-between items-center sticky top-0 z-50">
         <div className="flex items-center gap-2">
           <div className="w-5 h-5 bg-indigo-700 rounded flex items-center justify-center">
@@ -202,6 +223,7 @@ export default function Home() {
         </div>
       </div>
 
+      {/* TOP RATED SECTION */}
       <div className="max-w-7xl mx-auto px-4 py-8">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-bold">Top Rated</h2>
@@ -214,6 +236,7 @@ export default function Home() {
         </div>
       </div>
 
+      {/* FOOTER */}
       <footer className="bg-indigo-700 text-white mt-12">
         <div className="max-w-7xl mx-auto px-4 py-8">
           <div className="flex justify-between items-start">
