@@ -26,6 +26,7 @@ import {
 } from "@/src/components/ui/carousel";
 
 import { MovieCard } from "./_component/MovieCard";
+import Link from 'next/link';
 
 export type Movie = {
   adult: boolean;
@@ -128,7 +129,7 @@ export default function Home() {
         <Moon className="w-5 h-5 cursor-pointer text-gray-600" />
       </div>
 
-      {/* CAROUSEL */}
+   
       <div className="relative">
         <Carousel className="w-full">
           <CarouselContent>
@@ -141,7 +142,7 @@ export default function Home() {
                       alt={movie.title}
                       className="w-full h-full object-cover"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent" />
+                    <div className="absolute inset-0 bg-linear-to-r from-black/80 via-black/50 to-transparent" />
                   </div>
                   
                   <div className="relative h-full max-w-7xl mx-auto px-4 flex items-center">
