@@ -23,7 +23,6 @@ import {
 
 import { MovieCard } from "./_component/MovieCard";
 import Link from 'next/link';
-import { MovieSection } from './_component/MovieSection';
 
 export
 
@@ -160,11 +159,20 @@ export default function Home() {
         </Carousel>
       </div>
 
-      <MovieSection
-          categoryName="upcoming"
-          title="Upcoming"
-          showButton={true}
-        />
+      <div className="max-w-7xl mx-auto px-4 py-8">
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="text-2xl font-bold">Upcoming</h2>
+          <Button variant="link" className="text-indigo-600">See more →</Button>
+          {/* <Link href={`/category/${categoryName}`}>
+            <p>see more</p>
+          </Link> */}
+        </div>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+          {upcomingMovies.slice(0, 10).map((movie) => (
+            <MovieCard key={movie.id} movie={movie} />
+          ))}
+        </div>
+      </div>
 
 
       <div className="max-w-7xl mx-auto px-4 py-8">
