@@ -14,10 +14,6 @@ import {
   NavigationMenuContent,
 } from "@/src/components/ui/navigation-menu";
 import {
-  Card,
-  CardContent,
-} from "@/src/components/ui/card";
-import {
   Carousel,
   CarouselContent,
   CarouselItem,
@@ -43,6 +39,7 @@ export type Movie = {
   video: boolean;
   vote_average: number;
   vote_count: number;
+  categoryName: string;
 };
 
 type Response = {
@@ -182,6 +179,9 @@ export default function Home() {
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-bold">Upcoming</h2>
           <Button variant="link" className="text-indigo-600">See more →</Button>
+          <Link href={`/category/${categoryName}`}>
+            <p>see more</p>
+          </Link>
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
           {upcomingMovies.slice(0, 10).map((movie) => (

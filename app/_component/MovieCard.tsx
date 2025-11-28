@@ -17,6 +17,8 @@ type Movie = {
   video: boolean;
   vote_average: number;
   vote_count: number;
+  movieCategory: string;
+
 };
 
 export const MovieCard = ({ movie }: { movie: Movie }) => (

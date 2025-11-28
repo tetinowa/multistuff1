@@ -2,17 +2,38 @@
 
 import { Button } from "@/src/components/ui/button";
 import { MovieCard } from "./MovieCard";
-import { Movie } from "./MovieCard"
+import { useState, useEffect } from "react";
 
 
 type MovieSectionProps = {
   title: string;
-  movies: Movie[];
-  categoryName?: string;
-  showButton?: boolean;
+  categoryName: string;
+  showButton: boolean;
 };
 
-export default function MovieSection({ title, movies }: MovieSectionProps) {
+export const MovieSection = (props: MovieSectionProps) => {
+  const [movies, setMovies] = useState<Movie[]>([]);
+  const { categoryName, title, showButton} = props;
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await fetch(
+        `${process.env.TMDB_BASE_URL}/movie/${categoryName}?language=en-US&page=1`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyMTVkZDM3MjkzOTUyNTQyMTY0MjVjMDhmNDE4NWUxMSIsIm5iZiI6MTc2MzUyMzY0NC41MjMsInN1YiI6IjY5MWQzYzNjNmNjNDMzNzcxZTJkNDEwYSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.kkj8IUzuYcVwEahuxYgQAmfdV46-3VWJP3Rbm6rIUJ8`,
+          },
+        }
+      );
+      const data = await res.json();
+
+      setMovies(data.results);
+    };
+    fetchData();
+  }, []);
+
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
       <div className="flex justify-between items-center mb-6">

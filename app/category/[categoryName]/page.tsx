@@ -11,12 +11,12 @@ import {NavigationMenuLink} from "@/src/components/ui/navigation-menu"
 import { Input } from "@/src/components/ui/input";
 import { Search, Moon } from "lucide-react";
 import { useEffect, useState } from "react";
+import { Movie } from "@/app/_component/MovieCard";
 
 
 
 export const CategorySectionDetail = ({ params }) => {
-  const { categoryName } = use(params);
-
+  const { categoryName } = params;
   const [movies, setMovies] = useState<Movie[]>([]);
 
   useEffect(() => {
