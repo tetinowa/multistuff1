@@ -3,7 +3,8 @@
 import { Button } from "@/src/components/ui/button";
 import { MovieCard } from "./MovieCard";
 import { useState, useEffect } from "react";
-
+import Link from "next/link";
+import { Movie } from "./MovieCard";
 
 type MovieSectionProps = {
   title: string;
@@ -13,8 +14,7 @@ type MovieSectionProps = {
 
 export const MovieSection = (props: MovieSectionProps) => {
   const [movies, setMovies] = useState<Movie[]>([]);
-  const { categoryName, title, showButton} = props;
-
+  const { categoryName, title, showButton } = props;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -32,16 +32,20 @@ export const MovieSection = (props: MovieSectionProps) => {
       setMovies(data.results);
     };
     fetchData();
-  }, []);
+  }, [categoryName]);
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-2xl font-bold">{title}</h2>
 
-        <Button variant="link" className="text-indigo-600">
-          See more →
-        </Button>
+        {showButton && (
+          <Link href={`/category/${categoryName}`}>
+            <Button variant="link" className="text-indigo-600">
+              See more →
+            </Button>
+          </Link>
+        )}
       </div>
 
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
@@ -51,4 +55,4 @@ export const MovieSection = (props: MovieSectionProps) => {
       </div>
     </div>
   );
-}
+};

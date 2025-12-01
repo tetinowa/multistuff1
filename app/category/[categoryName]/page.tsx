@@ -1,36 +1,34 @@
 "use client"
 
-import MovieSection from "@/app/_component/MovieSection";
+import { MovieSection } from "@/app/_component/MovieSection";
 import { use } from "react";
-import {NavigationMenu} from "@/src/components/ui/navigation-menu";
-import {NavigationMenuList} from "@/src/components/ui/navigation-menu"
-import {NavigationMenuItem} from "@/src/components/ui/navigation-menu"
-import {NavigationMenuTrigger} from "@/src/components/ui/navigation-menu"
-import {NavigationMenuContent} from "@/src/components/ui/navigation-menu"
-import {NavigationMenuLink} from "@/src/components/ui/navigation-menu"
+import { NavigationMenu } from "@/src/components/ui/navigation-menu";
+import { NavigationMenuList } from "@/src/components/ui/navigation-menu";
+import { NavigationMenuItem } from "@/src/components/ui/navigation-menu";
+import { NavigationMenuTrigger } from "@/src/components/ui/navigation-menu";
+import { NavigationMenuContent } from "@/src/components/ui/navigation-menu";
+import { NavigationMenuLink } from "@/src/components/ui/navigation-menu";
 import { Input } from "@/src/components/ui/input";
 import { Search, Moon } from "lucide-react";
-import { useEffect, useState } from "react";
-import { Movie } from "@/app/_component/MovieCard";
 
+type Params = {
+  categoryName: string;
+};
 
-
-export const CategorySectionDetail = ({ params }) => {
-  const { categoryName } = params;
-  const [movies, setMovies] = useState<Movie[]>([]);
-
-  useEffect(() => {
-    async function load() {
-      const res = await fetch(`https://api.themoviedb.org/3/movie/${categoryName}?api_key=YOURKEY`);
-      const data = await res.json();
-      setMovies(data.results || []);
-    }
-    load();
-  }, [categoryName]);
+export default function CategoryPage({ params }: { params: Promise<Params> }) {
+  const { categoryName } = use(params);
+  
+  // Format the title nicely (e.g., "top_rated" -> "Top Rated")
+  const formatTitle = (name: string) => {
+    return name
+      .split('_')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
+  };
 
   return (
     <div className="min-h-screen bg-white">
-      
+      {/* Header */}
       <div className="bg-white h-[59px] border-b px-4 flex justify-between items-center sticky top-0 z-50">
         <div className="flex items-center gap-2">
           <div className="w-5 h-5 bg-indigo-700 rounded flex items-center justify-center">
@@ -66,28 +64,13 @@ export const CategorySectionDetail = ({ params }) => {
 
         <Moon className="w-5 h-5 cursor-pointer text-gray-600" />
       </div>
-    <div className=" gap-96 bg-red-200">
+
+      {/* Movie Section */}
       <MovieSection
-        movies={[]}
         categoryName={categoryName}
-        title={categoryName}
+        title={formatTitle(categoryName)}
         showButton={false}
       />
-    </div>
-
-
-   <div className=" gap-96 bg-red-200">
-      <MovieSection
-        movies={[]}
-        title={categoryName}
-        showButton={false}
-      />
-    </div>
     </div>
   );
-};
-console.log(CategorySectionDetail);
-export default CategorySectionDetail;
-
-
-
+}
