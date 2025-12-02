@@ -39,13 +39,10 @@ export const CarouselComponent = ({ nowPlayingMovies }: { nowPlayingMovies: Movi
                       <p className="text-gray-200 line-clamp-3">{movie.overview}</p>
                       <div className="flex gap-3 pt-2">
                         <Button className="bg-white text-black hover:bg-gray-200 gap-2">
-                          <Play className="w-4 h-4 fill-black" />
+                          <Play className="w-4 h-4" />
                           Watch Trailer
                         </Button>
-                        <Button variant="outline" className="border-white text-white hover:bg-white/10 gap-2">
-                          <Plus className="w-4 h-4" />
-                          Add to List
-                        </Button>
+                       
                       </div>
                     </div>
                   </div>

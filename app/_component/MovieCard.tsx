@@ -22,8 +22,8 @@ export type Movie = {
 
 export const MovieCard = ({ movie }: { movie: Movie }) => (
   <Card className="w-full border-0 shadow-none bg-transparent overflow-hidden group cursor-pointer">
-    <CardContent className="p-0">
-      <div className="relative aspect-[2/3] rounded-lg overflow-hidden">
+    <CardContent className="p-0 bg-[#F4F4F5 gap-[4px]]">
+      <div className="relative aspect-2/3 rounded-lg overflow-hidden">
         <img
           src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
           alt={movie.title}
