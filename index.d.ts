@@ -15,6 +15,7 @@ type Movie = {
   vote_count: number;
   categoryName: string;
   movieCategory: string;
+    
 };
 type MovieDetail = {
   backdrop_path: string;

@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Pagination,
   PaginationContent,
@@ -11,47 +13,55 @@ import { useParams } from "next/navigation";
 import { useState, useEffect } from "react";
 
 type Pagination1Props = {
-  className?: string;
+  className: string;
+};
+
+type Params = {
+  categoryName: string;
 };
 
 export function Pagination1({ className }: Pagination1Props) {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [toalPages, setTotalPages] = useState(1);
   const { categoryName } = useParams<Params>();
-  
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const [movies, setMovies] = useState<any[]>([]);
+
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchMovies = async () => {
       const res = await fetch(
-        `${process.env.TMDB_BASE_URL}/movie/${categoryName}?language=en-US&page=1`,
+        `https://api.themoviedb.org/3/movie/${categoryName}?language=en-US&page=${currentPage}`,
         {
           headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyMTVkZDM3MjkzOTUyNTQyMTY0MjVjMDhmNDE4NWUxMSIsIm5iZiI6MTc2MzUyMzY0NC41MjMsInN1YiI6IjY5MWQzYzNjNmNjNDMzNzcxZTJkNDEwYSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.kkj8IUzuYcVwEahuxYgQAmfdV46-3VWJP3Rbm6rIUJ8`,
+            accept: "application/json",
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9...`,
           },
         }
       );
+
       const data = await res.json();
-
       setMovies(data.results);
+      setTotalPages(data.total_pages);
     };
-    fetchData();
-  },
 
+    fetchMovies();
+  }, [categoryName, currentPage]);
+
+  const nextPage = () => setCurrentPage((prev) => prev + 1);
+  const prevPage = () => setCurrentPage((prev) => Math.max(prev - 1, 1));
+
+  console.log(currentPage);
   return (
     <Pagination className={className}>
       <PaginationContent>
         <PaginationItem>
-          <PaginationPrevious href="#" />
+          <PaginationPrevious onClick={prevPage} />
         </PaginationItem>
 
         <PaginationItem>
           <PaginationLink href="#" isActive>
-            1
+            {currentPage}
           </PaginationLink>
-        </PaginationItem>
-
-        <PaginationItem>
-          <PaginationLink href="#">2</PaginationLink>
         </PaginationItem>
 
         <PaginationItem>
@@ -59,11 +69,11 @@ export function Pagination1({ className }: Pagination1Props) {
         </PaginationItem>
 
         <PaginationItem>
-          <PaginationLink href="#">5</PaginationLink>
+          <PaginationLink href="#">{totalPages}</PaginationLink>
         </PaginationItem>
 
         <PaginationItem>
-          <PaginationNext href="#" />
+          <PaginationNext onClick={nextPage} />
         </PaginationItem>
       </PaginationContent>
     </Pagination>
