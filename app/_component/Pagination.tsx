@@ -44,7 +44,7 @@ export function Pagination1({
 
         <PaginationLink>...</PaginationLink>
 
-        <PaginationLink>{totalPages}</PaginationLink>
+        <PaginationLink>{currentPage + 1}</PaginationLink>
 
         <PaginationItem>
           <PaginationNext
