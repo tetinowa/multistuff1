@@ -10,16 +10,19 @@ type MovieSectionProps = {
   title: string;
   categoryName: string;
   showButton: boolean;
+  page: number;
+  totalPages: number;
 };
 
 export const MovieSection = (props: MovieSectionProps) => {
   const [movies, setMovies] = useState<Movie[]>([]);
-  const { categoryName, title, showButton } = props;
+  const [totalPages, setTotalPages] = useState<number>(1);
+  const { categoryName, title, showButton, page } = props;
 
   useEffect(() => {
     const fetchData = async () => {
       const res = await fetch(
-        `${process.env.TMDB_BASE_URL}/movie/${categoryName}?language=en-US&page=1`,
+        `${process.env.TMDB_BASE_URL}/movie/${categoryName}?language=en-US&page=${page}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -29,10 +32,11 @@ export const MovieSection = (props: MovieSectionProps) => {
       );
       const data = await res.json();
 
-      setMovies(data.results);
+      setMovies(data.results || []);
+      setTotalPages(data.total_pages);
     };
     fetchData();
-  }, [categoryName]);
+  }, [categoryName, page, totalPages]);
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
