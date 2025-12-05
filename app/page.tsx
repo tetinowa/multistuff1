@@ -1,11 +1,11 @@
 "use client";
 
-import dynamic from 'next/dynamic';
+import dynamic from "next/dynamic";
 import { useState, useEffect } from "react";
 import { CarouselComponent } from "./_component/Carousel";
-import { MovieSection } from './_component/MovieSection';
-import { Header } from './_component/Header';
-import { Footer } from './_component/Footer';
+import { MovieSection } from "./_component/MovieSection";
+import { Header } from "./_component/Header";
+import { Footer } from "./_component/Footer";
 
 type Response = {
   page: number;
@@ -25,7 +25,10 @@ export default function Home() {
           accept: "application/json",
         };
 
-        const nowPlayingRes = await fetch("https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1", { headers });
+        const nowPlayingRes = await fetch(
+          "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1",
+          { headers }
+        );
         const nowPlayingData = (await nowPlayingRes.json()) as Response;
         setNowPlayingMovies(nowPlayingData.results || []);
       } catch (error) {
@@ -38,24 +41,30 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-white">
-      <Header /> 
+      <Header />
 
       <CarouselComponent nowPlayingMovies={nowPlayingMovies} />
-      
-      <MovieSection 
-        title="Popular" 
-        categoryName="popular" 
-        showButton={true} 
+
+      <MovieSection
+        title="Popular"
+        categoryName="popular"
+        showButton={true}
+        page={1}
+        totalPages={1}
       />
-      <MovieSection 
-        title="Top Rated" 
-        categoryName="top_rated" 
-        showButton={true} 
+      <MovieSection
+        title="Top Rated"
+        categoryName="top_rated"
+        showButton={true}
+        page={1}
+        totalPages={1}
       />
-      <MovieSection 
-        title="Upcoming" 
-        categoryName="upcoming" 
-        showButton={true} 
+      <MovieSection
+        title="Upcoming"
+        categoryName="upcoming"
+        showButton={true}
+        page={1}
+        totalPages={1}
       />
 
       <Footer />

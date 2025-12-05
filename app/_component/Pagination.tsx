@@ -35,16 +35,20 @@ export function Pagination1({
           />
         </PaginationItem>
 
-        <PaginationLink>
+        <PaginationLink isActive={currentPage === 1}>
           {" "}
           {currentPage === 1 ? 1 : currentPage - 1}{" "}
         </PaginationLink>
 
-        <PaginationLink isActive>{currentPage}</PaginationLink>
+        <PaginationLink isActive={currentPage > 1}>
+          {currentPage === 1 ? 2 : currentPage}
+        </PaginationLink>
 
         <PaginationLink>...</PaginationLink>
 
-        <PaginationLink>{currentPage + 1}</PaginationLink>
+        <PaginationLink>
+          {currentPage === 1 ? 3 : currentPage + 1}
+        </PaginationLink>
 
         <PaginationItem>
           <PaginationNext
